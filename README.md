@@ -24,3 +24,6 @@ An end-to-end data project built around a **motorcycle trip** through the Flinde
 
 ---
 Dashboard colour convention: recorded = blue, estimated = amber.
+
+---
+This README was created with the assistance of Genie, Databricks' built-in AI assistant.
