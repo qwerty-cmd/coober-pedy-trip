@@ -17,6 +17,11 @@ An end-to-end data project built around a **motorcycle trip** through the Flinde
 
 ## Architecture
 
+![Architecture diagram](docs/architecture.png)
+
+<details>
+<summary>Mermaid source (for editing)</summary>
+
 ```mermaid
 flowchart LR
     A["Garmin Epix Gen 2<br/>15 FIT activity files"] --> V[("Unity Catalog volume<br/>/Volumes/workspace/trip/raw")]
@@ -29,6 +34,8 @@ flowchart LR
     GO --> SH["Showcase notebook<br/>day_labels + dash_* views"]
     SH --> D["AI/BI dashboard<br/>Coober Pedy Trip"]
 ```
+
+</details>
 
 ## Trip stats
 
