@@ -15,6 +15,21 @@ An end-to-end data project built around a **motorcycle trip** through the Flinde
 3. **Gap filling** — six unrecorded stretches (G1–G6) plus connectors were filled with estimated tracks from the hand-drawn waypoints; imputed points are labelled `is_imputed` with a confidence level and basis.
 4. **Dashboard** — an AI/BI dashboard ("Coober Pedy Trip") presents the trip: route map (recorded vs estimated), daily KM, trip records, and speed bands.
 
+## Architecture
+
+```mermaid
+flowchart LR
+    A["Garmin Epix Gen 2<br/>15 FIT activity files"] --> V[("Unity Catalog volume<br/>/Volumes/workspace/trip/raw")]
+    B["Hand-drawn routes<br/>routes_4.json (g1–g6 + connectors)"] --> V
+    V --> P["Pipeline notebook<br/>coober_pedy_trip_pipeline.py"]
+    P --> BR["Bronze tables<br/>bronze_records / bronze_session /<br/>bronze_lap / bronze_event"]
+    BR --> SV["Silver tables<br/>silver_track / silver_gap_points /<br/>silver_daily_curvature"]
+    SV --> GF["Gap filling<br/>G1–G6 + connectors<br/>estimated tracks (is_imputed)"]
+    GF --> GO["Gold tables<br/>gold_gaps / gold_track_filled /<br/>gold_daily"]
+    GO --> SH["Showcase notebook<br/>day_labels + dash_* views"]
+    SH --> D["AI/BI dashboard<br/>Coober Pedy Trip"]
+```
+
 ## Trip stats
 
 * **Total distance:** 4,656 km — 3,807 km recorded, 848 km estimated (82% recorded)
